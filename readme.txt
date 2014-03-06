@@ -1,13 +1,13 @@
 === Genesis Footer Links Nofollow ===
-Contributors: mikehale
+Contributors: MikeHale
 Tags: genesis, genesiswp, genesis framework, footer, nofollow, seo, commencia
 Requires at least: 3.2
 Tested up to: 3.8.1
-Stable tag: 0.1
+Stable tag: 0.2
 License: GPLv2 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
 
-Plugin makes all links in the footer nofollow. Use of Genesis Theme Framework is required.
+Plugin makes all or specified links in the footer rel=nofollow.  Use of Genesis Theme Framework is required.
 
 == Description ==
 
@@ -35,10 +35,15 @@ Google may consider site-wide links as spammy.
 No. This only changes the links in the Site Footer (Where you'll usually find the copyright)
 
 = Can I apply this to certain domains only? =
-Planned for the next release.
+Yes. Just enter a comma seperated list of domains to include:
 
+`google.com,yousite.com`
 
 == Changelog ==
+
+= 0.2 =
+Added ability to specify nofollow links by domain. 
+Replaced Regular Expression matching logic
 
 = 0.1 =
 Initial Release
