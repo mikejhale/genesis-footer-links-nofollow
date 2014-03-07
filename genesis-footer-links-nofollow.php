@@ -36,7 +36,7 @@ add_filter( 'genesis_footer_output', 'gfln_footer_output', 90 );
 
 function gfln_create_menu() {
 	add_options_page(
-		__( 'Genesis Footer Links Options', 'gfln' ),
+		__( 'Genesis Footer Links Options', 'genesis-footer-links-nofollow' ),
 		__( 'Footer Links', 'gfnl' ),
 		'manage_options',
 		'genesis-footer-links-nofollow-options',
@@ -57,17 +57,17 @@ function gfln_options_page() { ?>
     <?php do_settings_sections( 'gfln-options_group' ); ?>
     <table class="form-table">
         <tr valign="top">
-        	<th scope="row"><?php _e( 'Exclude Home Page Footer', 'gfln' ) ?></th>
+        	<th scope="row"><?php _e( 'Exclude Home Page Footer', 'genesis-footer-links-nofollow' ) ?></th>
         	<td>
 	        	<p><input type="checkbox" name="homepage_follow" <?php checked( get_option( 'homepage_follow' ), 'on' ); ?> /></p>
-	        	<p><span class="description"><?php printf( __( 'Checking this option will exclude footer links on the home page from being %s.', 'gfln' ), '<code>rel=nofollow</code>' ); ?></span></p>
+	        	<p><span class="description"><?php printf( __( 'Checking this option will exclude footer links on the home page from being %s.', 'genesis-footer-links-nofollow' ), '<code>rel=nofollow</code>' ); ?></span></p>
         	</td>
         </tr>
          <tr valign="top">
-        	<th scope="row"><?php _e( 'Included Domains', 'gfln' ) ?></th>
+        	<th scope="row"><?php _e( 'Included Domains', 'genesis-footer-links-nofollow' ) ?></th>
         	<td>
 	        	<p><input type="text" name="included_domains" value="<?php echo get_option('included_domains'); ?>" /></p>
-	        	<p><span class="description"><?php _e( 'Enter only domain names separated by commas: google.com, yoursite.com', 'gfln' ); ?></span></p>
+	        	<p><span class="description"><?php _e( 'Enter only domain names separated by commas: google.com, yoursite.com', 'genesis-footer-links-nofollow' ); ?></span></p>
         	</td>
         </tr>
     </table>
