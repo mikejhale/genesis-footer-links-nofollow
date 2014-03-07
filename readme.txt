@@ -3,7 +3,7 @@ Contributors: MikeHale, garyj
 Tags: genesis, genesiswp, genesis framework, footer, nofollow, seo, commencia
 Requires at least: 3.2
 Tested up to: 3.8.1
-Stable tag: 0.2
+Stable tag: 0.3.1
 License: GPLv2 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
 
@@ -41,7 +41,7 @@ Yes. Just enter a comma seperated list of domains to include:
 
 == Changelog ==
 
-= 0.3.0 =
+= 0.3.1 =
 Code Refactoring by [garyj](http://profiles.wordpress.org/garyj/)
 
 = 0.2 =
