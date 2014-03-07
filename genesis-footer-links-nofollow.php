@@ -12,7 +12,7 @@
  * 
  * Plugin Name:       Genesis Footer Links Nofollow
  * Plugin URI:        http://www.commencia.com/plugins/genesis-footer-links-nofollow
- * Description:       Makes links in the footer nofollow
+ * Description:       Makes all or selected links in the footer of Genesis child themes <code>rel=nofollow</code> for SEO benefits.
  * Version:           0.2.0
  * Author:            Mike Hale
  * Author URI:        http://www.mikehale.me/
