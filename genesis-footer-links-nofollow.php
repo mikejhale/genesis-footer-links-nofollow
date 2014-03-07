@@ -107,14 +107,13 @@ function gfln_footer_output( $output ) {
 	if ( ! is_home() ) {
 		return gfln_parse_footer_links( $output );
 	}
-	else {
-		if ( 'on' === get_option( 'homepage_follow' ) ) {
-			return $output;
-		}
-		else {
-			return gfln_amend_links( $output );
-		}
+	
+	if ( 'on' === get_option( 'homepage_follow' ) ) {
+		return $output;
 	}
+	
+	return gfln_amend_links( $output );
+
 }
 
 /**
