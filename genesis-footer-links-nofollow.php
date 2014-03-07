@@ -59,14 +59,14 @@ function gfln_options_page() { ?>
         <tr valign="top">
         	<th scope="row"><?php _e( 'Exclude Home Page Footer', 'genesis-footer-links-nofollow' ) ?></th>
         	<td>
-	        	<p><input type="checkbox" name="homepage_follow" <?php checked( get_option( 'homepage_follow' ), 'on' ); ?> /></p>
+	        	<p><input type="checkbox" name="homepage_follow"<?php checked( get_option( 'homepage_follow' ), 'on' ); ?> /></p>
 	        	<p><span class="description"><?php printf( __( 'Checking this option will exclude footer links on the home page from being %s.', 'genesis-footer-links-nofollow' ), '<code>rel=nofollow</code>' ); ?></span></p>
         	</td>
         </tr>
          <tr valign="top">
         	<th scope="row"><?php _e( 'Included Domains', 'genesis-footer-links-nofollow' ) ?></th>
         	<td>
-	        	<p><input type="text" name="included_domains" value="<?php echo get_option('included_domains'); ?>" /></p>
+	        	<p><input type="text" name="included_domains" value="<?php echo get_option( 'included_domains' ); ?>" /></p>
 	        	<p><span class="description"><?php _e( 'Enter only domain names separated by commas: google.com, yoursite.com', 'genesis-footer-links-nofollow' ); ?></span></p>
         	</td>
         </tr>
@@ -78,25 +78,25 @@ function gfln_options_page() { ?>
 }
 	
 function gfln_footer_output( $output ) {
-	if ( !is_home() ) {
-		return parse_footer_links( $output );
+	if ( ! is_home() ) {
+		return gfln_parse_footer_links( $output );
 	}
 	else {
-		if ( get_option( 'homepage_follow' ) == 'on' ) {
+		if ( 'on' === get_option( 'homepage_follow' ) ) {
 			return $output;
 		}
 		else {
-			return parse_footer_links( $output );
+			return gfln_parse_footer_links( $output );
 		}
 	}
 }
 
-function parse_footer_links( $footer ) {
+function gfln_parse_footer_links( $footer ) {
 	// check for included domains
 	$domains = array();
 	$included = get_option( 'included_domains' );	
 	if ( $included ) {
-		$domains = array_filter( explode( ",", $included ) );
+		$domains = array_filter( explode( ',', $included ) );
 	}	
 	
 	// parse footer
@@ -105,8 +105,8 @@ function parse_footer_links( $footer ) {
 	
 	foreach( $dom->getElementsByTagName( "a" ) as $a) {
 		$href = $a->getAttribute( 'href' );
-		$parseHref = parse_url( $href );
-		$host = $parseHref['host'];
+		$parsed_href = parse_url( $href );
+		$host = $parsed_href['host'];
 
 		if ( count( $domains ) > 0 ) {
 			// only do included domains
@@ -126,4 +126,3 @@ function parse_footer_links( $footer ) {
 	
 	return $dom->saveHTML();
 }
-?>
