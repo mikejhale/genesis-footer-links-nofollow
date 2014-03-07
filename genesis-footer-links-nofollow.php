@@ -39,7 +39,7 @@ function gfln_options_page() { ?>
     <?php do_settings_sections( 'gfln-options_group' ); ?>
     <table class="form-table">
         <tr valign="top">
-        	<th scope="row"><?php _e( 'Exlude Homepage Footer', 'gfln' ) ?></th>
+        	<th scope="row"><?php _e( 'Exclude Homepage Footer', 'gfln' ) ?></th>
         	<td>
 	        	<p><input type="checkbox" name="homepage_follow" <?php checked( get_option( 'homepage_follow' ), 'on' ); ?> /></p>
 	        	<p><span class="description"><?php _e( 'Checking this option will exclude footer links on the home page from being rel=nofollow.', 'gfln' ); ?></span></p>
