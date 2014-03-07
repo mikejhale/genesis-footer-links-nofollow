@@ -81,7 +81,7 @@ function gfln_options_page() { ?>
         	<th scope="row"><?php _e( 'Included Domains', 'genesis-footer-links-nofollow' ) ?></th>
         	<td>
 	        	<p><input type="text" name="included_domains" value="<?php echo get_option( 'included_domains' ); ?>" /></p>
-	        	<p><span class="description"><?php _e( 'Enter only domain names separated by commas: google.com, yoursite.com', 'genesis-footer-links-nofollow' ); ?></span></p>
+	        	<p><span class="description"><?php printf( __( 'Optionally enter domain names to affect, separated by commas, e.g. %s.com. If none are listed, all links are amended.', 'genesis-footer-links-nofollow' ), '<code>google.com, yoursite</code>' ); ?></span></p>
         	</td>
         </tr>
     </table>
