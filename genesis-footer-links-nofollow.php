@@ -29,6 +29,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
+add_action( 'plugins_loaded', 'gfln_load_textdomain' );
+/**
+ * Load plugin textdomain.
+ *
+ * @since 0.3.0
+ */
+function gfln_load_textdomain() {
+  load_plugin_textdomain( 'my-plugin', false, plugin_dir_path( __FILE__ ) . 'languages' ); 
+}
+
 add_action( 'admin_menu', 'gfln_create_menu' );
 /**
  * Add Footer Links to Settings menu.
