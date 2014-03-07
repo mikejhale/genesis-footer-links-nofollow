@@ -23,7 +23,7 @@ add_action( 'admin_init', 'gfln_register_settings' );
 add_filter( 'genesis_footer_output', 'gfln_footer_output', 90 );
 
 function gfln_create_menu() {
-	add_options_page( 'Footer Links Options', 'Footer Links', 'manage_options', 'genesis-footer-links-nofollow-options', 'gfln_options_page' );
+	add_options_page( 'Genesis Footer Links Options', 'Footer Links', 'manage_options', 'genesis-footer-links-nofollow-options', 'gfln_options_page' );
 }
 
 function gfln_register_settings() {
@@ -33,8 +33,8 @@ function gfln_register_settings() {
 
 function gfln_options_page() { ?>	
 <div class="wrap">
-<h2>Genesis Footer Links Nofollow</h2>
 <form method="post" action="options.php">
+	<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 	<?php settings_fields( 'gfln-options_group' ); ?>
     <?php do_settings_sections( 'gfln-options_group' ); ?>
     <table class="form-table">
