@@ -23,7 +23,13 @@ add_action( 'admin_init', 'gfln_register_settings' );
 add_filter( 'genesis_footer_output', 'gfln_footer_output', 90 );
 
 function gfln_create_menu() {
-	add_options_page( 'Genesis Footer Links Options', 'Footer Links', 'manage_options', 'genesis-footer-links-nofollow-options', 'gfln_options_page' );
+	add_options_page(
+		__( 'Genesis Footer Links Options', 'gfln' ),
+		__( 'Footer Links', 'gfnl' ),
+		'manage_options',
+		'genesis-footer-links-nofollow-options',
+		'gfln_options_page'
+	);
 }
 
 function gfln_register_settings() {
