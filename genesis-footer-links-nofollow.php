@@ -13,7 +13,7 @@
  * Plugin Name:       Genesis Footer Links Nofollow
  * Plugin URI:        http://www.commencia.com/plugins/genesis-footer-links-nofollow
  * Description:       Makes links in the footer nofollow
- * Version:           0.2
+ * Version:           0.2.0
  * Author:            Mike Hale
  * Author URI:        http://www.mikehale.me/
  * Text Domain:       genesis-footer-links-nofollow
@@ -29,13 +29,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
-// Actions
 add_action( 'admin_menu', 'gfln_create_menu' );
-add_action( 'admin_init', 'gfln_register_settings' );
-
-//  Filters
-add_filter( 'genesis_footer_output', 'gfln_footer_output', 90 );
-
+/**
+ * Add Footer Links to Settings menu.
+ *
+ * @since 0.2.0
+ */
 function gfln_create_menu() {
 	add_options_page(
 		__( 'Genesis Footer Links Options', 'genesis-footer-links-nofollow' ),
@@ -46,11 +45,24 @@ function gfln_create_menu() {
 	);
 }
 
+add_action( 'admin_init', 'gfln_register_settings' );
+/**
+ * Register Genesis Footer Links NoFollow settings.
+ *
+ * This ensures that WordPress handles the saving of them via the Settings API.
+ *
+ * @since 0.2.0
+ */
 function gfln_register_settings() {
 	register_setting( 'gfln-options_group', 'homepage_follow' );
 	register_setting( 'gfln-options_group', 'included_domains' );
 }
 
+/**
+ * Callback to output the settings page.
+ *
+ * @since  0.2.0
+ */
 function gfln_options_page() { ?>	
 <div class="wrap">
 <form method="post" action="options.php">
@@ -79,6 +91,18 @@ function gfln_options_page() { ?>
 <?php 
 }
 	
+add_filter( 'genesis_footer_output', 'gfln_footer_output', 90 );
+/**
+ * Integrate the plugin functionality with Genesis output.
+ *
+ * This is the only thing that touches Genesis.
+ *
+ * @since  0.2.0
+ * 
+ * @param  string $output Existing footer output.
+ * 
+ * @return string         Amended footer output.
+ */
 function gfln_footer_output( $output ) {
 	if ( ! is_home() ) {
 		return gfln_parse_footer_links( $output );
@@ -93,6 +117,15 @@ function gfln_footer_output( $output ) {
 	}
 }
 
+/**
+ * Parse markup to add rel=nofollow to links to selected domains.
+ *
+ * @since  0.2.0
+ *
+ * @param  string $footer Existing markup.
+ * 
+ * @return string         Amended markup.
+ */
 function gfln_parse_footer_links( $footer ) {
 	// check for included domains
 	$domains = array();
