@@ -5,22 +5,23 @@
  * @package           Genesis_Footer_Links_NoFollow
  * @author            Mike Hale
  * @license           GPL-2.0+
- * @link              http://www.mikehale.me/genesis-footer-links-nofollow-plugin/
+ * @link              http://www.commencia.com/plugins/genesis-footer-links-nofollow/
  * @copyright         2014 Mike Hale
  *
  * @wordpress-plugin
  * 
  * Plugin Name:       Genesis Footer Links Nofollow
+ * Contributors:	  MikeHale, garyj
  * Plugin URI:        http://www.commencia.com/plugins/genesis-footer-links-nofollow
  * Description:       Makes all or selected links in the footer of Genesis child themes <code>rel=nofollow</code> for SEO benefits.
- * Version:           0.2.0
+ * Version:           0.3.0
  * Author:            Mike Hale
  * Author URI:        http://www.mikehale.me/
  * Text Domain:       genesis-footer-links-nofollow
  * Domain Path:       /languages
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * GitHub Plugin URI: https://github.com/GaryJones/plugin-name
+ * GitHub Plugin URI: https://github.com/mikejhale/genesis-footer-links-nofollow
  * GitHub Branch:     master
  */
 
@@ -36,7 +37,7 @@ add_action( 'plugins_loaded', 'gfln_load_textdomain' );
  * @since 0.3.0
  */
 function gfln_load_textdomain() {
-  load_plugin_textdomain( 'my-plugin', false, plugin_dir_path( __FILE__ ) . 'languages' ); 
+  load_plugin_textdomain( 'genesis-footer-links-nofollow', false, plugin_dir_path( __FILE__ ) . 'languages' ); 
 }
 
 add_action( 'admin_menu', 'gfln_create_menu' );
@@ -48,7 +49,7 @@ add_action( 'admin_menu', 'gfln_create_menu' );
 function gfln_create_menu() {
 	add_options_page(
 		__( 'Genesis Footer Links Options', 'genesis-footer-links-nofollow' ),
-		__( 'Footer Links', 'gfnl' ),
+		__( 'Footer Links', 'genesis-footer-links-nofollow' ),
 		'manage_options',
 		'genesis-footer-links-nofollow-options',
 		'gfln_options_page'
@@ -91,7 +92,7 @@ function gfln_options_page() { ?>
         	<th scope="row"><?php _e( 'Included Domains', 'genesis-footer-links-nofollow' ) ?></th>
         	<td>
 	        	<p><input type="text" name="included_domains" value="<?php echo get_option( 'included_domains' ); ?>" /></p>
-	        	<p><span class="description"><?php printf( __( 'Optionally enter domain names to affect, separated by commas, e.g. %s.com. If none are listed, all links are amended.', 'genesis-footer-links-nofollow' ), '<code>google.com, yoursite</code>' ); ?></span></p>
+	        	<p><span class="description"><?php printf( __( 'Specify any domains you want to be nofollow, separated by commas, e.g. %s If none are listed, all links are amended.', 'genesis-footer-links-nofollow' ), '<code>google.com, yoursite.com</code>' ); ?></span></p>
         	</td>
         </tr>
     </table>
@@ -115,7 +116,7 @@ add_filter( 'genesis_footer_output', 'gfln_footer_output', 90 );
  */
 function gfln_footer_output( $output ) {
 	if ( ! is_home() ) {
-		return gfln_parse_footer_links( $output );
+		return gfln_amend_links( $output );
 	}
 	
 	if ( 'on' === get_option( 'homepage_follow' ) ) {
@@ -129,7 +130,7 @@ function gfln_footer_output( $output ) {
 /**
  * Parse markup to add `rel=nofollow` to links to selected domains.
  *
- * @since  0.2.0
+ * @since  0.3.0
  *
  * @param  string $markup Existing markup.
  * 
@@ -148,7 +149,7 @@ function gfln_amend_links( $markup ) {
 
 		if ( count( $domains ) > 0 ) { // only do included domains
 			foreach( $domains as $d ) {
-				if ( stristr( $host, trim( $d ) ) ) {
+				if ( stristr( $host, $d ) ) {
 					$a->setAttribute( 'rel', 'nofollow' );
 					break;
 				}
