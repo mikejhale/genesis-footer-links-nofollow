@@ -1,14 +1,26 @@
 <?php
-/*
-Plugin Name: Genesis Footer Links Nofollow
-Plugin URI: http://www.commencia.com/plugins/genesis-footer-links-nofollow
-Description: Makes links in the footer nofollow
-Version: 0.2
-Author: Mike Hale
-Author URI: http://www.mikehale.me/
-License: GPL-2.0+
-License URI: http://www.gnu.org/licenses/gpl-2.0.txt
-*/
+/**
+ * Genesis Footer Links NoFollow
+ *
+ * @package           Genesis_Footer_Links_NoFollow
+ * @author            Mike Hale
+ * @license           GPL-2.0+
+ * @link              http://www.mikehale.me/genesis-footer-links-nofollow-plugin/
+ * @copyright         2014 Mike Hale
+ *
+ * @wordpress-plugin
+ * 
+ * Plugin Name:       Genesis Footer Links Nofollow
+ * Plugin URI:        http://www.commencia.com/plugins/genesis-footer-links-nofollow
+ * Description:       Makes links in the footer nofollow
+ * Version:           0.2
+ * Author:            Mike Hale
+ * Author URI:        http://www.mikehale.me/
+ * Text Domain:       genesis-footer-links-nofollow
+ * Domain Path:       /languages
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ */
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
