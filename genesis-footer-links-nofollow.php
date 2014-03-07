@@ -112,52 +112,59 @@ function gfln_footer_output( $output ) {
 			return $output;
 		}
 		else {
-			return gfln_parse_footer_links( $output );
+			return gfln_amend_links( $output );
 		}
 	}
 }
 
 /**
- * Parse markup to add rel=nofollow to links to selected domains.
+ * Parse markup to add `rel=nofollow` to links to selected domains.
  *
  * @since  0.2.0
  *
- * @param  string $footer Existing markup.
+ * @param  string $markup Existing markup.
  * 
  * @return string         Amended markup.
  */
-function gfln_parse_footer_links( $footer ) {
-	// check for included domains
-	$domains = array();
-	$included = get_option( 'included_domains' );	
-	if ( $included ) {
-		$domains = array_filter( explode( ',', $included ) );
-	}	
-	
-	// parse footer
+function gfln_amend_links( $markup ) {
+	$domains = gfln_get_domains();
+
 	$dom = new DOMDocument();
-	$dom->loadHTML( utf8_decode( $footer ) );
+	$dom->loadHTML( utf8_decode( $markup ) );
 	
-	foreach( $dom->getElementsByTagName( "a" ) as $a) {
+	foreach( $dom->getElementsByTagName( 'a' ) as $a) {
 		$href = $a->getAttribute( 'href' );
 		$parsed_href = parse_url( $href );
 		$host = $parsed_href['host'];
 
-		if ( count( $domains ) > 0 ) {
-			// only do included domains
+		if ( count( $domains ) > 0 ) { // only do included domains
 			foreach( $domains as $d ) {
 				if ( stristr( $host, trim( $d ) ) ) {
 					$a->setAttribute( 'rel', 'nofollow' );
 					break;
 				}
 			}		
-		}
-		else 
-		{
-			// do all
+		} else { // do all
 			$a->setAttribute( 'rel', 'nofollow' );
 		}	
 	}
 	
 	return $dom->saveHTML();
+}
+
+/**
+ * Get any listed domains.
+ *
+ * @since  0.3.0
+ * 
+ * @return array List of domains that should have nofollow applied. May be empty.
+ */
+function gfln_get_domains() {
+	$domains = array();
+	$included = get_option( 'included_domains' );	
+	if ( $included ) {
+		$domains = array_filter( explode( ',', $included ) );
+		$domains = array_map( 'trim', $domains );
+	}
+	return $domains;
 }
