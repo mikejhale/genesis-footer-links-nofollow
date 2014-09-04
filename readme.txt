@@ -2,7 +2,7 @@
 Contributors: MikeHale, garyj
 Tags: genesis, genesiswp, genesis framework, footer, nofollow, seo, commencia
 Requires at least: 3.2
-Tested up to: 3.8.1
+Tested up to: 4.0
 Stable tag: 0.3.1
 License: GPLv2 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
