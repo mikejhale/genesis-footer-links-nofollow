@@ -1,5 +1,5 @@
 === Genesis Footer Links Nofollow ===
-Contributors: MikeHale, garyj
+Contributors: MikeHale, GaryJ
 Tags: genesis, genesiswp, genesis framework, footer, nofollow, seo, commencia
 Requires at least: 3.2
 Tested up to: 4.0
