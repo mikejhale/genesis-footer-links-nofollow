@@ -9,9 +9,9 @@
  * @copyright         2014 Mike Hale
  *
  * @wordpress-plugin
- * 
+ *
  * Plugin Name:       Genesis Footer Links Nofollow
- * Contributors:	  MikeHale, garyj
+ * Contributors:	    MikeHale, GaryJ
  * Plugin URI:        http://www.commencia.com/plugins/genesis-footer-links-nofollow
  * Description:       Makes all or selected links in the footer of Genesis child themes <code>rel=nofollow</code> for SEO benefits.
  * Version:           0.3.1
@@ -37,7 +37,7 @@ add_action( 'plugins_loaded', 'gfln_load_textdomain' );
  * @since 0.3.0
  */
 function gfln_load_textdomain() {
-  load_plugin_textdomain( 'genesis-footer-links-nofollow', false, plugin_dir_path( __FILE__ ) . 'languages' ); 
+  load_plugin_textdomain( 'genesis-footer-links-nofollow', false, plugin_dir_path( __FILE__ ) . 'languages' );
 }
 
 add_action( 'admin_menu', 'gfln_create_menu' );
@@ -74,7 +74,7 @@ function gfln_register_settings() {
  *
  * @since  0.2.0
  */
-function gfln_options_page() { ?>	
+function gfln_options_page() { ?>
 <div class="wrap">
 <form method="post" action="options.php">
 	<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
@@ -99,9 +99,9 @@ function gfln_options_page() { ?>
     <?php submit_button(); ?>
 </form>
 </div>
-<?php 
+<?php
 }
-	
+
 add_filter( 'genesis_footer_output', 'gfln_footer_output', 90 );
 /**
  * Integrate the plugin functionality with Genesis output.
@@ -109,20 +109,20 @@ add_filter( 'genesis_footer_output', 'gfln_footer_output', 90 );
  * This is the only thing that touches Genesis.
  *
  * @since  0.2.0
- * 
+ *
  * @param  string $output Existing footer output.
- * 
+ *
  * @return string         Amended footer output.
  */
 function gfln_footer_output( $output ) {
 	if ( ! is_home() ) {
 		return gfln_amend_links( $output );
 	}
-	
+
 	if ( 'on' === get_option( 'homepage_follow' ) ) {
 		return $output;
 	}
-	
+
 	return gfln_amend_links( $output );
 
 }
@@ -133,7 +133,7 @@ function gfln_footer_output( $output ) {
  * @since  0.3.0
  *
  * @param  string $markup Existing markup.
- * 
+ *
  * @return string         Amended markup.
  */
 function gfln_amend_links( $markup ) {
@@ -141,7 +141,7 @@ function gfln_amend_links( $markup ) {
 
 	$dom = new DOMDocument();
 	$dom->loadHTML( utf8_decode( $markup ) );
-	
+
 	foreach( $dom->getElementsByTagName( 'a' ) as $a) {
 		$href = $a->getAttribute( 'href' );
 		$parsed_href = parse_url( $href );
@@ -153,12 +153,12 @@ function gfln_amend_links( $markup ) {
 					$a->setAttribute( 'rel', 'nofollow' );
 					break;
 				}
-			}		
+			}
 		} else { // do all
 			$a->setAttribute( 'rel', 'nofollow' );
-		}	
+		}
 	}
-	
+
 	return $dom->saveHTML();
 }
 
@@ -166,12 +166,12 @@ function gfln_amend_links( $markup ) {
  * Get any listed domains.
  *
  * @since  0.3.0
- * 
+ *
  * @return array List of domains that should have nofollow applied. May be empty.
  */
 function gfln_get_domains() {
 	$domains = array();
-	$included = get_option( 'included_domains' );	
+	$included = get_option( 'included_domains' );
 	if ( $included ) {
 		$domains = array_filter( explode( ',', $included ) );
 		$domains = array_map( 'trim', $domains );
