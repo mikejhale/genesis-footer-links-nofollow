@@ -9,8 +9,8 @@ Read [http://www.mikehale.me/genesis-footer-links-nofollow-plugin/](http://www.m
 ## Requirements
 This plugin will likely work on much earlier versions, but support is limited to the latest versions.
 
- * WordPress 3.8
- * Genesis 2.0
+ * WordPress 4.9
+ * Genesis 2.5
 
 ## Installation
 

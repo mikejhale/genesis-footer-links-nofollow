@@ -5,14 +5,14 @@
  * @package           Genesis_Footer_Links_NoFollow
  * @author            Mike Hale
  * @license           GPL-2.0+
- * @link              http://www.commencia.com/plugins/genesis-footer-links-nofollow/
+ * @link              https://stompgear.com/plugins/genesis-footer-links-nofollow/
  * @copyright         2014-2018 Mike Hale
  *
  * @wordpress-plugin
  *
  * Plugin Name:       Genesis Footer Links Nofollow
  * Contributors:	    MikeHale, GaryJ
- * Plugin URI:        http://www.commencia.com/plugins/genesis-footer-links-nofollow
+ * Plugin URI:        https://stompgear.com/plugins/genesis-footer-links-nofollow
  * Description:       Makes all or selected links in the footer of Genesis child themes <code>rel=nofollow</code> for SEO benefits.
  * Version:           0.3.2
  * Author:            Mike Hale

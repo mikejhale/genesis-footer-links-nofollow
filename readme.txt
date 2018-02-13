@@ -2,8 +2,8 @@
 Contributors: MikeHale, GaryJ
 Tags: genesis, genesiswp, genesis framework, footer, nofollow, seo, commencia
 Requires at least: 3.2
-Tested up to: 4.6
-Stable tag: 0.3.1
+Tested up to: 4.9
+Stable tag: 0.3.2
 License: GPLv2 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
 
@@ -40,6 +40,9 @@ Yes. Just enter a comma seperated list of domains to include:
 `google.com,yoursite.com`
 
 == Changelog ==
+
+= 0.3.2 =
+Add check for `is_front_page()`
 
 = 0.3.1 =
 Code Refactoring by [garyj](http://profiles.wordpress.org/garyj/)
