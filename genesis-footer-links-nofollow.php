@@ -6,7 +6,7 @@
  * @author            Mike Hale
  * @license           GPL-2.0+
  * @link              http://www.commencia.com/plugins/genesis-footer-links-nofollow/
- * @copyright         2014 Mike Hale
+ * @copyright         2014-2018 Mike Hale
  *
  * @wordpress-plugin
  *
@@ -14,7 +14,7 @@
  * Contributors:	    MikeHale, GaryJ
  * Plugin URI:        http://www.commencia.com/plugins/genesis-footer-links-nofollow
  * Description:       Makes all or selected links in the footer of Genesis child themes <code>rel=nofollow</code> for SEO benefits.
- * Version:           0.3.1
+ * Version:           0.3.2
  * Author:            Mike Hale
  * Author URI:        http://www.mikehale.me/
  * Text Domain:       genesis-footer-links-nofollow
@@ -115,7 +115,7 @@ add_filter( 'genesis_footer_output', 'gfln_footer_output', 90 );
  * @return string         Amended footer output.
  */
 function gfln_footer_output( $output ) {
-	if ( ! is_home() ) {
+	if ( ! is_home() && ! is_front_page() ) {
 		return gfln_amend_links( $output );
 	}
 
